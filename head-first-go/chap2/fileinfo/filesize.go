@@ -8,7 +8,7 @@ import (
 
 func main() {
 
-	fmt.Print("Enter a file name:")
+	fmt.Print("Enter a file name: ")
 	var fileName string
 	fmt.Scanln(&fileName)
 
