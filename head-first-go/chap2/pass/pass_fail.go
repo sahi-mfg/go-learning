@@ -11,21 +11,28 @@ import (
 	"strings"
 )
 
-func main() {
-
-	var status string
-	fmt.Print("Enter a grade: ")
+func getFloat() (float64, error){
 	reader := bufio.NewReader(os.Stdin)
-	input, error := reader.ReadString('\n')
-	if error != nil {
-		log.Fatal(error)
+	input, err := reader.ReadString('\n')
+	if err != nil {
+		return 0, err
 	}
 	input = strings.TrimSpace(input)
-	grade, error := strconv.ParseFloat(input, 64)
-	if error != nil {
-		log.Fatal(error)
+	number, err := strconv.ParseFloat(input, 64)
+	if err != nil {
+		return 0, err
+	}
+	return number, nil
+}
+
+func main() {
+	fmt.Print("Enter a grade: ")
+	grade, err := getFloat()
+	if err != nil{
+		log.Fatal(err)
 	}
 
+	var status string
 	if grade > float64(100) {
 		status = "Not Possible"
 	} else if grade >= float64(60) {
