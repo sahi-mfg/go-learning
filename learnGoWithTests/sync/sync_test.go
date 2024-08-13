@@ -21,12 +21,12 @@ func TestCounter(t *testing.T) {
 		}
 		wg.Wait()
 
-		assertCounter(t, counter, wantedCount)
+		assertCounter(t, &counter, wantedCount)
 	})
 
 }
 
-func assertCounter(t testing.TB, got Counter, want int) {
+func assertCounter(t testing.TB, got *Counter, want int) {
 	t.Helper()
 	if got.Value() != want {
 		t.Errorf("got %d, want %d", got.Value(), want)
